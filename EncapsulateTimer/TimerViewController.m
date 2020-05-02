@@ -41,20 +41,24 @@
     
     // target selector timer
     // 注意循环引用问题，所以用proxy代理解决
-    self.taskName = [MyTimer executeTaskWithTarget:[MyProxy proxyWithTarget:self] selector:@selector(timerCount) start:1.0f interval:3.0f repeats:YES async:YES];
+    self.taskName = [MyTimer executeTaskWithTarget:[MyProxy proxyWithTarget:self] selector:@selector(timerCount:) start:1.0f interval:3.0f repeats:YES async:YES];
     
     // block timer
-    self.taskName2 = [MyTimer executeTask:^{
-        NSLog(@"block timer == %@", [NSThread currentThread]);
-    } start:0.0f interval:2.0f repeats:YES async:YES];
+//    self.taskName2 = [MyTimer executeTask:^{
+//        NSLog(@"block timer == %@", [NSThread currentThread]);
+//    } start:0.0f interval:2.0f repeats:YES async:YES];
     
 }
 
-- (void)timerCount {
+- (void)timerCount:(id)object {
+    NSLog(@"%@", object);
     NSLog(@"target selector timer == %@", [NSThread currentThread]);
 }
 
+
+
 - (void)dealloc {
+    // 取消任务
     [MyTimer cancelTask:self.taskName];
     [MyTimer cancelTask:self.taskName2];
     NSLog(@"%s", __func__);

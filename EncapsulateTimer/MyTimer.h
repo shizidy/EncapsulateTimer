@@ -11,10 +11,6 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface MyTimer : NSObject
-/*
- NSTimer scheduledTimerWithTimeInterval:<#(NSTimeInterval)#> target:<#(nonnull id)#> selector:<#(nonnull SEL)#> userInfo:<#(nullable id)#> repeats:<#(BOOL)#>
- */
-
 /// timer定时执行task @selector版
 /// @param target target
 /// @param start 开始时间

@@ -42,8 +42,10 @@ dispatch_semaphore_t semaphore;
             // 消除警告
             #pragma clang diagnostic push
             #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-            [target performSelector:selector];
+            [target performSelector:selector withObject:@"带参数"];
             #pragma clang diagnostic pop
+            
+            
         }
     } start:start interval:interval repeats:repeats async:async];
 }
